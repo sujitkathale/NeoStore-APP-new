@@ -61,7 +61,7 @@ export default function Checkout() {
                       }}
                       required
                     />
-                    {cnumber.length > 0 && cnumber.length < 16 && (
+                    {cnumber != " " && cnumber.length < 16 && (
                       <span className="text-danger">
                         Enter creidt card number correctly
                       </span>

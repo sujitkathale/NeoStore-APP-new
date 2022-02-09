@@ -10,10 +10,11 @@ const colorModal = require("../db/colorSchema");
 const catModel = require("../db/categorySchema");
 const orderModel = require("../db/orderSchema");
 
+//Token Authendication
 function autenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
-  console.log(token);
+  // console.log(token);
   if (token == null) {
     res.json({ err: 1, msg: "Token not match" });
   } else {
@@ -28,19 +29,21 @@ function autenticateToken(req, res, next) {
   }
 }
 
-// Register User
+// Registration of new User
 router.post("/register", (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
   let name = req.body.name;
   let mobile = req.body.mobile;
   let address = req.body.address;
+  // let pic = req.body.pic;
   let ins = new userModel({
     name: name,
     email: email,
     mobile: mobile,
     address: address,
     password: password,
+    // pic: pic,
   });
   ins.save((err) => {
     if (err) {
@@ -105,7 +108,7 @@ router.put("/updprofile/:id", (req, res) => {
   );
 });
 
-// get products
+// Fetch products
 router.get("/products", autenticateToken, (req, res) => {
   productModel.find({}, (err, products) => {
     if (err) {
@@ -127,18 +130,20 @@ router.get("/productdetails/:_id", (req, res) => {
 });
 
 //get cart details
-router.get("/cart/:item/:price/:email", (req, res) => {
+router.get("/cart/:item/:image/:price/:email", (req, res) => {
   let item = req.params.item;
   let email = req.params.email;
   let price = req.params.price;
+  let image = req.params.item;
   orderModel.find(
-    { pname: item, email: email, checkout: false },
+    { image: item, pname: item, email: email, checkout: false },
     (err, data) => {
       if (err) {
         res.json({ err: err });
       }
       if (data.length === 0) {
         let ins_order = new orderModel({
+          image: image,
           pname: item,
           email: email,
           price: price,

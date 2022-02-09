@@ -12,6 +12,7 @@ export default function Register() {
   let [name, setName] = useState("");
   let [mobile, setMobile] = useState("");
   let [address, setAddress] = useState("");
+  // let [pic, setPic] = useState("");
   const navigate = useNavigate();
   const register = () => {
     let data = {
@@ -20,6 +21,7 @@ export default function Register() {
       mobile: mobile,
       address: address,
       password: password,
+      // pic: pic,
     };
     registerUser(data).then((res) => {
       if (res.data.err) {
@@ -161,6 +163,20 @@ export default function Register() {
                   )}
                 </Col>
               </Form.Group>
+              {/* <Form.Group as={Row} className="mb-3 text-white">
+                <Form.Label column sm="2">
+                  Pic
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    type="file"
+                    name="pic"
+                    onChange={(e) => {
+                      setPic(e.target.value);
+                    }}
+                  />
+                </Col>
+              </Form.Group> */}
               <Button as={Row} variant="outline-primary" onClick={register}>
                 Register
               </Button>

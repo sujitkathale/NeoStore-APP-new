@@ -20,7 +20,7 @@ export function getProducts() {
 }
 export function cartAdd(item, email) {
   return axios.get(
-    `${MAIN_URL}eshop/cart/${item.pname}/${item.price}/${email}`
+    `${MAIN_URL}eshop/cart/${item.image}/${item.pname}/${item.price}/${email}`
   );
 }
 export function getOrder(email) {

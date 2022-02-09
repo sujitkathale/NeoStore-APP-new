@@ -1,3 +1,5 @@
+//Product Color Schema
+
 const mongoose = require("mongoose");
 const colSchema = new mongoose.Schema({
   color_name: {

@@ -1,3 +1,4 @@
+//Product Category Schema
 const mongoose = require("mongoose");
 const catSchema = new mongoose.Schema({
   category_name: {
